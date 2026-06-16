@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 public record SummaryResponse(
         BigDecimal totalNetRevenue,
-        Long totalNetRevenue,
+        Long totalUnitsSold,
         BigDecimal grossProfitMargin,
         String topRegion,
         String topChannel,
