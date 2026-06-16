@@ -1,9 +1,29 @@
 import { KpiCard } from "@/components/KpiCard";
+import { useSummary } from "@/hooks/useSummary";
+import { formatCurrency, formatPercentage } from "@/lib/format";
 
 export function App() {
+  const { data, isLoading, error } = useSummary();
+
+  if (isLoading) {
+    return (
+      <div className="p-8 text-muted-foreground">
+        Loading dashboard...
+      </div>
+    );
+  }
+
+  if (error || !data) {
+    return (
+      <div className="p-8 text-destructive">
+        Failed to load dashboard.
+      </div>
+    );
+  }
+
   return (
     <main className="min-h-screen bg-background">
-      <div className="container mx-auto max-w-7xl p-6 space-y-8">
+      <div className="container mx-auto max-w-7xl space-y-8 p-6">
         <header className="space-y-1">
           <h1 className="text-3xl font-bold tracking-tight">
             NovaBite BI Dashboard
@@ -17,17 +37,17 @@ export function App() {
         <section className="grid gap-4 md:grid-cols-3">
           <KpiCard
             title="Total Net Revenue"
-            value="$1,245,320"
+            value={formatCurrency(data.totalNetRevenue)}
           />
 
           <KpiCard
             title="Gross Profit Margin"
-            value="34.82%"
+            value={formatPercentage(data.grossProfitMargin)}
           />
 
           <KpiCard
             title="Top Region"
-            value="West"
+            value={data.topRegion}
           />
         </section>
 

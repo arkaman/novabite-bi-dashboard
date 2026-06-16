@@ -6,6 +6,6 @@ export function formatCurrency(value: number) {
     }).format(value);
 }
 
-export function formatPercentage(value: number) {
-    return `${value.toFixed(2)}%`;
+export function formatPercentage(value?: number | null) {
+    return `${(value ?? 0).toFixed(2)}%`;
 }
