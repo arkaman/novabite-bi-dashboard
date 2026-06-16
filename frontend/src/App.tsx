@@ -3,6 +3,7 @@ import { RevenueChart } from "@/components/RevenueChart";
 import { useTrends } from "@/hooks/useTrends";
 import { useSummary } from "@/hooks/useSummary";
 import { formatCurrency, formatPercentage } from "@/lib/format";
+import { ChatBox } from "./components/ChatBox";
 
 export function App() {
   const { data, isLoading, error } = useSummary();
@@ -70,9 +71,7 @@ export function App() {
             AI Business Assistant
           </h2>
 
-          <div className="flex h-64 items-center justify-center rounded-lg border border-dashed text-muted-foreground">
-            Chat Interface
-          </div>
+          <ChatBox />
         </section>
       </div>
     </main>
