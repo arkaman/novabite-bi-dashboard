@@ -1,9 +1,13 @@
 import { KpiCard } from "@/components/KpiCard";
+import { RevenueChart } from "@/components/RevenueChart";
+import { useTrends } from "@/hooks/useTrends";
 import { useSummary } from "@/hooks/useSummary";
 import { formatCurrency, formatPercentage } from "@/lib/format";
 
 export function App() {
   const { data, isLoading, error } = useSummary();
+
+  const { data: trends } = useTrends();
 
   if (isLoading) {
     return (
@@ -56,8 +60,8 @@ export function App() {
             Monthly Revenue Trend
           </h2>
 
-          <div className="flex h-80 items-center justify-center rounded-lg border border-dashed text-muted-foreground">
-            Revenue Chart
+          <div className="h-80">
+            {trends && <RevenueChart data={trends} />}
           </div>
         </section>
 
