@@ -9,6 +9,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Component;
 
 import java.io.InputStreamReader;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Map;
 
@@ -47,16 +48,20 @@ public class DataSeeder implements CommandLineRunner {
                         .channel(row.get("channel"))
                         .salesRep(row.get("sales_rep"))
                         .unitsSold(Integer.parseInt(row.get("units_sold")))
-                        .unitPriceUsd(Double.parseDouble(row.get("unit_price_usd")))
-                        .grossRevenueUsd(Double.parseDouble(row.get("gross_revenue_usd")))
-                        .discountPct(Double.parseDouble(row.get("discount_pct")))
-                        .netRevenueUsd(Double.parseDouble(row.get("net_revenue_usd")))
-                        .cogsUsd(Double.parseDouble(row.get("cogs_usd")))
-                        .grossProfitUsd(Double.parseDouble(row.get("gross_profit_usd")))
+                        .unitPriceUsd(bd(row.get("unit_price_usd")))
+                        .grossRevenueUsd(bd(row.get("gross_revenue_usd")))
+                        .discountPct(bd(row.get("discount_pct")))
+                        .netRevenueUsd(bd(row.get("net_revenue_usd")))
+                        .cogsUsd(bd(row.get("cogs_usd")))
+                        .grossProfitUsd(bd(row.get("gross_profit_usd")))
                         .build();
 
                 saleRepository.save(sale);
             }
         }
+    }
+
+    private BigDecimal bd(String value) {
+        return new BigDecimal(value);
     }
 }
