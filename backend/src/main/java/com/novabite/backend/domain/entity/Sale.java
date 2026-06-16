@@ -1,5 +1,6 @@
 package com.novabite.backend.domain.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import jakarta.persistence.Id;
@@ -21,7 +22,9 @@ public class Sale {
 
     private LocalDate date;
 
+    @Column(name = "sales_month")
     private String month;
+    @Column(name = "sales_quarter")
     private String quarter;
 
     private String sku;
