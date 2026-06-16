@@ -6,6 +6,7 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Id;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Getter
@@ -39,15 +40,15 @@ public class Sale {
 
     private Integer unitsSold;
 
-    private Double unitPriceUsd;
+    private BigDecimal unitPriceUsd;
 
-    private Double grossRevenueUsd;
+    private BigDecimal grossRevenueUsd;
 
-    private Double discountPct;
+    private BigDecimal discountPct;
 
-    private Double netRevenueUsd;
+    private BigDecimal netRevenueUsd;
 
-    private Double cogsUsd;
+    private BigDecimal cogsUsd;
 
-    private Double grossProfitUsd;
+    private BigDecimal grossProfitUsd;
 }
